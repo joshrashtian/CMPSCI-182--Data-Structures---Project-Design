@@ -1,3 +1,5 @@
+package Proj1;
+
 public class Appointment {
     private String month;
     private int day;
@@ -5,16 +7,19 @@ public class Appointment {
     private String message;
     private int minute;
 
-    Appointment () {
+    Appointment() {
 
     }
 
-    Appointment (int newDay, int newHour, String newMsg, String newMonth, int newMin) {
+    Appointment(int newDay, int newHour, String newMsg, String newMonth, int newMin) {
         this.day = newDay;
         this.hour = newHour;
         this.message = newMsg;
-        if(newMonth.length() > 2) { System.out.println(Colors.ORANGE() + "WARN " + Colors.RESET() + "Months have a max length of 3. The month has been adapted to 3 characters."); }
-        this.month = newMonth.substring(0, 2);
+        if (newMonth.length() > 3) {
+            System.out.println(Colors.ORANGE() + "WARN " + Colors.RESET()
+                    + "Months have a max length of 3. The month has been adapted to 3 characters.");
+        }
+        this.month = newMonth.substring(0, 3);
         this.minute = newMin;
     }
 
@@ -38,18 +43,21 @@ public class Appointment {
         return this.minute;
     }
 
-    public void setMinute(int min)  {
+    public void setMinute(int min) {
         this.minute = min;
         System.out.println("Minute Set!");
     }
 
-    public void setMessage (String msg) {
+    public void setMessage(String msg) {
         this.message = msg;
         System.out.println("Message Set!");
     }
 
-    public void setMonth(String month) {
-        if(newMonth.length() > 2) { System.out.println(Colors.ORANGE() + "WARN " + Colors.RESET() + "Months have a max length of 3. The month has been adapted to 3 characters."); }
+    public void setMonth(String newMonth) {
+        if (newMonth.length() > 2) {
+            System.out.println(Colors.ORANGE() + "WARN " + Colors.RESET()
+                    + "Months have a max length of 3. The month has been adapted to 3 characters.");
+        }
         this.month = month.substring(0, 3);
         System.out.println("Month Set!");
     }
@@ -64,5 +72,8 @@ public class Appointment {
         System.out.println("Hour Set!");
     }
 
-
+    public String toString() {
+        return Colors.ORANGE() + this.month.toUpperCase() + " " + this.day + " | " + this.hour + ":" + this.minute
+                + " | " + Colors.RESET() + this.message;
+    }
 }
