@@ -1,12 +1,15 @@
 package Proj1;
 
+import Universal.Log;
+
 public class TestAppointment {
     public static void main(String[] args) {
-        Appointment Test = new Appointment(30, 4, "Big Day for Science Class", "March", 30);
-        Log.log(Test.toString());
+        Appointment Test = Appointment.createAppointment();
 
         Test.setDay(31);
 
         Log.num(Test.getHour());
+
+        Log.log(Test.toString());
     }
 }

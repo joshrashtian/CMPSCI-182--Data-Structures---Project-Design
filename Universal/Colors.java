@@ -1,4 +1,4 @@
-package Proj1;
+package Universal;
 
 public class Colors {
     public static String RESET() {

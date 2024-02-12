@@ -1,5 +1,9 @@
 package Proj1;
 
+import java.util.Scanner;
+
+import Universal.*;
+
 public class Appointment {
     private String month;
     private int day;
@@ -75,5 +79,20 @@ public class Appointment {
     public String toString() {
         return Colors.ORANGE() + this.month.toUpperCase() + " " + this.day + " | " + this.hour + ":" + this.minute
                 + " | " + Colors.RESET() + this.message;
+    }
+
+    public static Appointment createAppointment() {
+        UserInput userInput = new UserInput();
+        System.out.println(Colors.ORANGE() + "Enter Month: " + Colors.RESET());
+        String month = userInput.getString(0, 3);
+        System.out.println(Colors.ORANGE() + "Enter Day: " + Colors.RESET());
+        int day = userInput.getInt(0, 31);
+        System.out.println(Colors.ORANGE() + "Enter Hour: " + Colors.RESET());
+        int hour = userInput.getInt(0, 23);
+        System.out.println(Colors.ORANGE() + "Enter Minute: " + Colors.RESET());
+        int minute = userInput.getInt(0, 59);
+        System.out.println(Colors.ORANGE() + "Enter Message: " + Colors.RESET());
+        String message = userInput.getString(0, 40);
+        return new Appointment(day, hour, message, month, minute);
     }
 }
