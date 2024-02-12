@@ -1,7 +1,5 @@
 package Proj1;
 
-import java.util.Scanner;
-
 import Universal.*;
 
 public class Appointment {

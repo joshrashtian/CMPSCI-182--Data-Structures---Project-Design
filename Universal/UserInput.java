@@ -19,13 +19,13 @@ public class UserInput {
         }
     }
 
-    public char getChar(char min, char max) {
+    public char getChar(int min, int max) {
         char input = scanner.next().charAt(0);
 
         return input;
     }
 
-    public double getDouble(double min, double max) {
+    public double getDouble(int min, int max) {
         double value;
 
         while (true) {
