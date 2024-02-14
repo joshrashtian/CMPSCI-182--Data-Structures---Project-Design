@@ -1,14 +1,12 @@
 package Proj1;
 
-import java.util.Calendar;
-
 import Universal.Colors;
 import Universal.Log;
 import Universal.UserInput;
 
 public class Planner {
     private Appointment[] calendar = new Appointment[20];
-
+    int numElements = 0;
     UserInput input = new UserInput();
 
     Planner() {
@@ -18,55 +16,60 @@ public class Planner {
         this.calendar[0] = first;
     }
 
-    Planner(Appointment[] calendar) {
-        for (int i = 0; i < calendar.length; i++) {
-            this.calendar[i] = calendar[i];
+    Planner(Appointment[] a) {
+        for (int i = 0; i < a.length; i++) {
+            insertAppointment(a[i]);
         }
+        numElements = a.length;
     }
 
-    public int compareAppointment(Appointment a, Appointment b) {
-        int result;
-        if (a.getDay() != b.getDay()) {
-            if (a.getDay() > b.getDay()) {
-                result = 0;
-            } else {
-                result = 1;
+    // make a function that converst month in string form to int using a if
+    // statment.
+
+    // make a funciton that converst dates to numbers
+
+    public int getMonth(Appointment a) {
+        String[] months = { "jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec" };
+
+        int month = 0;
+        for (int i = 0; i < months.length; i++) {
+            if (a.getMonth().toUpperCase().equals(months[i].toUpperCase())) {
+                month = i;
             }
-        } else if (a.getHour() != b.getHour()) {
-            if (a.getHour() > b.getHour()) {
-                result = 0;
-            } else {
-                result = 1;
-            }
-        } else if (a.getMinute() != b.getMinute()) {
-            if (a.getMinute() > b.getMinute()) {
-                result = 0;
-            } else {
-                result = 1;
-            }
-        } else
-            result = 2;
+        }
+        return month;
+    }
+
+    public boolean compareAppointment(Appointment c, Appointment a) {
+
+        int cNum = c.getMinute() + c.getHour() * 60 + (c.getDay() * 24 * 60) + (this.getMonth(c) * 24 * 60 * 31);
+        int aNum = a.getMinute() + a.getHour() * 60 + (a.getDay() * 24 * 60) + (this.getMonth(a) * 24 * 60 * 31);
+
+        if (cNum > aNum) {
+            return false;
+        }
+
+        return true;
         /* 0 is A is bigger, 1 is B is bigger. */
-        return result;
     }
 
     private void insertAppointment(Appointment a) {
-        for (int i = 0; i < this.calendar.length; i++) {
-            if (compareAppointment(a, calendar[i]) == 0) {
-                Log.log("Here" + i);
-                for (int j = i; j < this.calendar.length; j++) {
-                    try {
-                        calendar[j] = calendar[j + 1];
-                    } catch (ArrayIndexOutOfBoundsException e) {
 
-                    }
-                }
-                calendar[i] = a;
+        for (int i = 0; i < this.calendar.length; i++) {
+            if (this.calendar[i] == null) {
+                this.calendar[i] = a;
+                numElements++;
                 return;
-            } else {
-                calendar[i] = calendar[i];
             }
-            ;
+            if (compareAppointment(this.calendar[i], a) == false) {
+                for (int j = numElements; j >= i; j--) {
+                    Log.log("log this " + i + " " + j);
+                    this.calendar[j + 1] = this.calendar[j];
+                }
+                this.calendar[i] = a;
+                numElements++;
+                return;
+            }
         }
     }
 
@@ -84,6 +87,7 @@ public class Planner {
         while (true) {
             int selection = input.getInt(0, calendar.length);
             if (selection == 0) {
+                numElements--;
                 return;
             }
         }
