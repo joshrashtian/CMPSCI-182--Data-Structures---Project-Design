@@ -23,11 +23,6 @@ public class Planner {
         numElements = a.length;
     }
 
-    // make a function that converst month in string form to int using a if
-    // statment.
-
-    // make a funciton that converst dates to numbers
-
     public int getMonth(Appointment a) {
         String[] months = { "jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec" };
 
@@ -63,7 +58,6 @@ public class Planner {
             }
             if (compareAppointment(this.calendar[i], a) == false) {
                 for (int j = numElements; j >= i; j--) {
-                    Log.log("log this " + i + " " + j);
                     this.calendar[j + 1] = this.calendar[j];
                 }
                 this.calendar[i] = a;
@@ -80,17 +74,19 @@ public class Planner {
 
     private void deleteAppointment() {
         Log.log(Colors.RED() + "Please enter the index of the appointment you would like to delete.");
-        Log.log(Colors.ORANGE() + "Use 0 to cancel.");
-        for (int i = 0; i < this.calendar.length; i++) {
-            Log.log(Colors.RED() + (i + 1) + " / " + calendar[i].toString());
+        for (int i = 0; i < numElements; i++) {
+            Log.log(Colors.RED() + (i) + " / " + calendar[i].toString());
         }
-        while (true) {
-            int selection = input.getInt(0, calendar.length);
-            if (selection == 0) {
-                numElements--;
-                return;
+        int selection = input.getInt(0, numElements);
+        Planner newPlanner = new Planner();
+        for (int i = 0; i < numElements; i++) {
+            if(i != selection) {
+            newPlanner.insertAppointment(this.calendar[i]);
             }
         }
+        this.calendar = newPlanner.calendar;
+        numElements--;
+        return;
     }
 
     private void listAppointment() {
