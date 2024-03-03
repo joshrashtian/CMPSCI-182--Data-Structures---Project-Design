@@ -18,8 +18,7 @@ public class Appointment {
         this.hour = newHour;
         this.message = newMsg;
         if (newMonth.length() > 3) {
-            System.out.println(Colors.ORANGE() + "WARN " + Colors.RESET()
-                    + "Months have a max length of 3. The month has been adapted to 3 characters.");
+            Log.error("Months have a max length of 3. The month has been adapted to 3 characters.");
         }
         this.month = newMonth.substring(0, 3);
         this.minute = newMin;
