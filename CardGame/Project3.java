@@ -152,10 +152,14 @@ class Link {
  ******************************************************************/
 
 class Card extends Link {
+  String[] dictionary = { "A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "10", "10", "0" };
   private Image cardimage;
+  private int cardvalue;
 
   public Card(int cardnum) {
     cardimage = Project3.load_picture("images/gbCard" + cardnum + ".gif");
+    cardvalue = cardnum;
+
     // code ASSUMES there is an images sub-dir in your project folder
     if (cardimage == null) {
       System.out.println("Error - image failed to load: images/gbCard" + cardnum + ".gif");
@@ -165,6 +169,27 @@ class Card extends Link {
 
   public Card getNextCard() {
     return (Card) next;
+  }
+
+  public int getCardNum() {
+    return cardvalue;
+  }
+
+  public int getCardValue(int currentScore) {
+    int value = cardvalue;
+    // 14 -> 1, 24 -> 9
+    while (value > 13) {
+      value = value - 13;
+    }
+
+    if (dictionary[cardvalue] == "A") {
+      if (currentScore + 11 > 21) {
+        return 1;
+      } else
+        return 11;
+    }
+
+    return Integer.parseInt(dictionary[cardvalue]);
   }
 
   public Image getCardImage() {
