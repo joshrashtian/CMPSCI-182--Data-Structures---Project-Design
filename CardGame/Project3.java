@@ -9,6 +9,9 @@ package CardGame;
 ***************************************************************/
 
 import javax.swing.*;
+
+import Universal.Log;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
@@ -18,6 +21,7 @@ public class Project3 extends JFrame implements ActionListener {
   private static int winxpos = 0, winypos = 0; // place window here
 
   private JButton shuffleButton, exitButton, newButton;
+  private JLabel deckAmount;
   private CardList theDeck = null;
   private JPanel northPanel;
   private MyPanel centerPanel;
@@ -47,7 +51,10 @@ public class Project3 extends JFrame implements ActionListener {
     centerPanel = new MyPanel();
     getContentPane().add("Center", centerPanel);
 
-    theDeck = new CardList(3);
+    theDeck = new CardList(2);
+    deckAmount = new JLabel();
+    deckAmount.setText("Card Amount: " + theDeck.getDeckAmount());
+    centerPanel.add(deckAmount);
 
     setSize(800, 700);
     setLocation(winxpos, winypos);
@@ -67,7 +74,8 @@ public class Project3 extends JFrame implements ActionListener {
       repaint();
     }
     if (e.getSource() == newButton) {
-      theDeck.deleteCard(1);
+      theDeck.randomNewCard();
+      deckAmount.setText("Card Amount: " + theDeck.getDeckAmount());
       repaint();
     }
   }
@@ -182,14 +190,14 @@ class Card extends Link {
       value = value - 13;
     }
 
-    if (dictionary[cardvalue] == "A") {
+    if (dictionary[value] == "A") {
       if (currentScore + 11 > 21) {
         return 1;
       } else
         return 11;
     }
 
-    return Integer.parseInt(dictionary[cardvalue]);
+    return Integer.parseInt(dictionary[value]);
   }
 
   public Image getCardImage() {
@@ -210,20 +218,27 @@ class Card extends Link {
 class CardList {
   private Card firstcard = null;
   private int numcards = 0;
+  private int valueOfCards = 0;
 
   public CardList(int num) {
     numcards = num; // set numcards in the deck
     for (int i = 0; i < num; i++) { // load the cards
-      Card temp = new Card(i);
+      int rand = (int) (Math.random() * 13);
+      Card temp = new Card(rand);
       if (firstcard != null) {
         temp.setNext(firstcard);
       }
       firstcard = temp;
+      valueOfCards += temp.getCardValue(valueOfCards);
     }
   }
 
   public Card getFirstCard() {
     return firstcard;
+  }
+
+  public int getDeckAmount() {
+    return valueOfCards;
   }
 
   public Card deleteCard(int cardnum) {
@@ -249,6 +264,13 @@ class CardList {
     return target;
   }
 
+  public void randomNewCard() {
+    int rand = (int) (Math.random() * 51);
+    Card temp = new Card(rand);
+    if (temp != null)
+      insertCard(temp);
+  }
+
   public void insertCard(Card target) {
     numcards++;
     if (firstcard != null)
@@ -256,14 +278,20 @@ class CardList {
     else
       target.setNext(null);
     firstcard = target;
+    Log.log(target.getCardValue(valueOfCards));
+    valueOfCards += target.getCardValue(valueOfCards);
+    Log.log("Value: " + valueOfCards);
   }
 
   public void shuffle() {
+    // shuffle the deck
+    valueOfCards = 0;
     for (int i = 0; i < 300; i++) {
-      int rand = (int) (Math.random() * 100) % numcards;
+      int rand = (int) (Math.random() * 51);
       Card temp = deleteCard(rand);
       if (temp != null)
         insertCard(temp);
+
     } // end for loop
   } // end shuffle
 
