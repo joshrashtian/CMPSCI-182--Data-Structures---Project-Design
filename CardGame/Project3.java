@@ -20,11 +20,13 @@ public class Project3 extends JFrame implements ActionListener {
 
   private static int winxpos = 0, winypos = 0; // place window here
 
-  private JButton shuffleButton, exitButton, newButton;
+  private JButton HitButton, exitButton, StandButton;
   private JLabel deckAmount;
-  private CardList theDeck = null;
+  private CardList PlayerDeck = null;
+  private CardList dealerDeck = null;
   private JPanel northPanel;
   private MyPanel centerPanel;
+  private DealerPanel bottomPanel;
   private static JFrame myFrame = null;
 
   //////////// MAIN ////////////////////////
@@ -35,28 +37,40 @@ public class Project3 extends JFrame implements ActionListener {
   //////////// CONSTRUCTOR /////////////////////
   public Project3() {
     myFrame = this; // need a static variable reference to a JFrame object
+
     northPanel = new JPanel();
     northPanel.setBackground(Color.white);
-    shuffleButton = new JButton("Shuffle");
-    northPanel.add(shuffleButton);
-    shuffleButton.addActionListener(this);
-    newButton = new JButton("New Deck");
-    northPanel.add(newButton);
-    newButton.addActionListener(this);
+    HitButton = new JButton("Hit");
+    northPanel.add(HitButton);
+    HitButton.addActionListener(this);
+    StandButton = new JButton("Stand");
+    northPanel.add(StandButton);
+    StandButton.addActionListener(this);
     exitButton = new JButton("Exit");
     northPanel.add(exitButton);
     exitButton.addActionListener(this);
-    getContentPane().add("North", northPanel);
+    getContentPane().add(northPanel, BorderLayout.NORTH);
 
     centerPanel = new MyPanel();
-    getContentPane().add("Center", centerPanel);
+    centerPanel.setSize(800, 10);
+    centerPanel.setBackground(Color.green);
 
-    theDeck = new CardList(2);
+    bottomPanel = new DealerPanel();
+    bottomPanel.setSize(800, 50);
+    bottomPanel.setBackground(Color.CYAN);
+    getContentPane().add(centerPanel, BorderLayout.CENTER);
+
+    PlayerDeck = new CardList(2);
+
+    dealerDeck = new CardList(2);
+
+    getContentPane().add(bottomPanel, BorderLayout.SOUTH);
+
     deckAmount = new JLabel();
-    deckAmount.setText("Card Amount: " + theDeck.getDeckAmount());
+    deckAmount.setText("Card Amount: " + PlayerDeck.getDeckAmount());
     centerPanel.add(deckAmount);
 
-    setSize(800, 700);
+    setSize(800, 900);
     setLocation(winxpos, winypos);
 
     setVisible(true);
@@ -69,15 +83,23 @@ public class Project3 extends JFrame implements ActionListener {
       dispose();
       System.exit(0);
     }
-    if (e.getSource() == shuffleButton) {
-      theDeck.shuffle();
+    if (e.getSource() == StandButton) {
       repaint();
     }
-    if (e.getSource() == newButton) {
-      theDeck.randomNewCard();
-      deckAmount.setText("Card Amount: " + theDeck.getDeckAmount());
+    if (e.getSource() == HitButton) {
+      PlayerDeck.randomNewCard();
+      deckAmount.setText("Card Amount: " + PlayerDeck.getDeckAmount());
+      checkValues(PlayerDeck, dealerDeck);
       repaint();
     }
+  }
+
+  public void NewUserTurn() {
+
+  }
+
+  public void checkValues(CardList user, CardList dealer) {
+
   }
 
   // This routine will load an image into memory
@@ -116,10 +138,31 @@ public class Project3 extends JFrame implements ActionListener {
     //////////// PAINT ////////////////////////////////
     public void paintComponent(Graphics g) {
       //
-      int xpos = 25, ypos = 5;
-      if (theDeck == null)
+      int xpos = 25, ypos = 0;
+      if (PlayerDeck == null)
         return;
-      Card current = theDeck.getFirstCard();
+      Card current = PlayerDeck.getFirstCard();
+      while (current != null) {
+        Image tempimage = current.getCardImage();
+        g.drawImage(tempimage, xpos, ypos, this);
+        // note: tempimage member variable must be set BEFORE paint is called
+        xpos += 80;
+        if (xpos > 700) {
+          xpos = 25;
+          ypos += 105;
+        }
+        current = current.getNextCard();
+      } // while
+    }
+  }
+
+  class DealerPanel extends JPanel {
+    public void paintComponent(Graphics g) {
+      //
+      int xpos = 25, ypos = 0;
+      if (dealerDeck == null)
+        return;
+      Card current = dealerDeck.getFirstCard();
       while (current != null) {
         Image tempimage = current.getCardImage();
         g.drawImage(tempimage, xpos, ypos, this);
@@ -211,7 +254,7 @@ class Card extends Link {
  * 
  * Note : This class can be used to create a 'hand' of cards
  * Just Create another CardList object, and delete cards from
- * 'theDeck' and insert the cards into the new CardList object
+ * 'PlayerDeck' and insert the cards into the new CardList object
  * 
  ******************************************************************/
 
