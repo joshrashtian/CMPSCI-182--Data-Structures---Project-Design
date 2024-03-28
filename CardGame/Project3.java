@@ -20,13 +20,16 @@ public class Project3 extends JFrame implements ActionListener {
 
   private static int winxpos = 0, winypos = 0; // place window here
 
+  private boolean playerTurn = true;
+  private boolean gameRunning = true;
+
   private JButton HitButton, exitButton, StandButton;
-  private JLabel deckAmount;
+  private JLabel deckAmount, dealerAmount, gameStats;
   private CardList PlayerDeck = null;
   private CardList dealerDeck = null;
   private JPanel northPanel;
   private MyPanel centerPanel;
-  private DealerPanel bottomPanel;
+  // private DealerPanel bottomPanel;
   private static JFrame myFrame = null;
 
   //////////// MAIN ////////////////////////
@@ -52,22 +55,26 @@ public class Project3 extends JFrame implements ActionListener {
     getContentPane().add(northPanel, BorderLayout.NORTH);
 
     centerPanel = new MyPanel();
-    centerPanel.setSize(800, 10);
+    centerPanel.setSize(800, 30);
     centerPanel.setBackground(Color.green);
 
-    bottomPanel = new DealerPanel();
-    bottomPanel.setSize(800, 50);
-    bottomPanel.setBackground(Color.CYAN);
-    getContentPane().add(centerPanel, BorderLayout.CENTER);
+    // bottomPanel = new DealerPanel();
+    // bottomPanel.setSize(800, 50);
+    // bottomPanel.setBackground(Color.CYAN);
+    getContentPane().add(centerPanel);
 
     PlayerDeck = new CardList(2);
 
-    dealerDeck = new CardList(2);
+    dealerDeck = new CardList(1);
 
-    getContentPane().add(bottomPanel, BorderLayout.SOUTH);
+    // getContentPane().add(bottomPanel, BorderLayout.SOUTH);
 
     deckAmount = new JLabel();
-    deckAmount.setText("Card Amount: " + PlayerDeck.getDeckAmount());
+    dealerAmount = new JLabel();
+    gameStats = new JLabel();
+
+    deckAmount
+        .setText("Card Amount: " + PlayerDeck.getDeckAmount() + "\n Dealer Amount: " + dealerDeck.getDeckAmount());
     centerPanel.add(deckAmount);
 
     setSize(800, 900);
@@ -78,27 +85,78 @@ public class Project3 extends JFrame implements ActionListener {
 
   //////////// BUTTON CLICKS ///////////////////////////
   public void actionPerformed(ActionEvent e) {
+    if (!playerTurn)
+      return;
 
     if (e.getSource() == exitButton) {
       dispose();
       System.exit(0);
     }
-    if (e.getSource() == StandButton) {
+    if (e.getSource() == StandButton && gameRunning) {
+      NewDealerTurn();
       repaint();
     }
-    if (e.getSource() == HitButton) {
+    if (e.getSource() == HitButton && gameRunning) {
       PlayerDeck.randomNewCard();
-      deckAmount.setText("Card Amount: " + PlayerDeck.getDeckAmount());
-      checkValues(PlayerDeck, dealerDeck);
+      refreshText();
+      checkValues(PlayerDeck);
       repaint();
     }
   }
 
-  public void NewUserTurn() {
-
+  public void refreshText() {
+    deckAmount
+        .setText("Card Amount: " + PlayerDeck.getDeckAmount() + "Dealer Amount: " + dealerDeck.getDeckAmount());
+    repaint();
   }
 
-  public void checkValues(CardList user, CardList dealer) {
+  public void NewDealerTurn() {
+    playerTurn = false;
+    northPanel.setBackground(Color.gray);
+    repaint();
+
+    while (dealerDeck.getDeckAmount() < 16) {
+      try {
+        Thread.sleep(500);
+        dealerDeck.randomNewCard();
+        refreshText();
+        repaint();
+        if (dealerDeck.getDeckAmount() == 21) {
+          deckAmount.setText("Card Amount: " + PlayerDeck.getDeckAmount() + "\n Dealer Amount: "
+              + dealerDeck.getDeckAmount() + " / You Lost!");
+          break;
+        }
+
+      } catch (InterruptedException e) {
+        Thread.currentThread().interrupt();
+      }
+
+    }
+
+    playerTurn = true;
+    northPanel.setBackground(Color.white);
+    repaint();
+
+    if (dealerDeck.getDeckAmount() > PlayerDeck.getDeckAmount() && dealerDeck.getDeckAmount() <= 21) {
+      deckAmount.setText("Card Amount: " + PlayerDeck.getDeckAmount() + "\n Dealer Amount: "
+          + dealerDeck.getDeckAmount() + " / You Lost!");
+    } else {
+      deckAmount.setText("Card Amount: " + PlayerDeck.getDeckAmount() + "\n Dealer Amount: "
+          + dealerDeck.getDeckAmount() + " / You Won!");
+    }
+    gameRunning = false;
+  }
+
+  public void checkValues(CardList user) {
+    if (user.getDeckAmount() == 21) {
+      deckAmount.setText("Card Amount: " + PlayerDeck.getDeckAmount() + "\n Dealer Amount: "
+          + dealerDeck.getDeckAmount() + " / You Won!");
+      gameRunning = false;
+    } else if (user.getDeckAmount() > 21) {
+      deckAmount.setText("Card Amount: " + PlayerDeck.getDeckAmount() + "\n Dealer Amount: "
+          + dealerDeck.getDeckAmount() + " / You Lost By Going Over!");
+      gameRunning = false;
+    }
 
   }
 
@@ -138,7 +196,7 @@ public class Project3 extends JFrame implements ActionListener {
     //////////// PAINT ////////////////////////////////
     public void paintComponent(Graphics g) {
       //
-      int xpos = 25, ypos = 0;
+      int xpos = 25, ypos = 100;
       if (PlayerDeck == null)
         return;
       Card current = PlayerDeck.getFirstCard();
@@ -156,26 +214,29 @@ public class Project3 extends JFrame implements ActionListener {
     }
   }
 
-  class DealerPanel extends JPanel {
-    public void paintComponent(Graphics g) {
-      //
-      int xpos = 25, ypos = 0;
-      if (dealerDeck == null)
-        return;
-      Card current = dealerDeck.getFirstCard();
-      while (current != null) {
-        Image tempimage = current.getCardImage();
-        g.drawImage(tempimage, xpos, ypos, this);
-        // note: tempimage member variable must be set BEFORE paint is called
-        xpos += 80;
-        if (xpos > 700) {
-          xpos = 25;
-          ypos += 105;
-        }
-        current = current.getNextCard();
-      } // while
-    }
-  }
+  {
+    /*
+     * class DealerPanel extends JPanel {
+     * public void paintComponent(Graphics g) {
+     * //
+     * int xpos = 25, ypos = 0;
+     * if (dealerDeck == null)
+     * return;
+     * Card current = dealerDeck.getFirstCard();
+     * while (current != null) {
+     * Image tempimage = current.getCardImage();
+     * g.drawImage(tempimage, xpos, ypos, this);
+     * // note: tempimage member variable must be set BEFORE paint is called
+     * xpos += 80;
+     * if (xpos > 700) {
+     * xpos = 25;
+     * ypos += 105;
+     * }
+     * current = current.getNextCard();
+     * } // while
+     * }
+     * }
+     */}
 
 } // End Of class Project3
 
@@ -203,7 +264,7 @@ class Link {
  ******************************************************************/
 
 class Card extends Link {
-  String[] dictionary = { "A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "10", "10", "0" };
+  String[] dictionary = { "A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "10", "10", "0", "1" };
   private Image cardimage;
   private int cardvalue;
 
