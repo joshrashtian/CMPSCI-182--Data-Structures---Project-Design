@@ -1,4 +1,4 @@
-
+package Project4;
 /***************************************************************
 
 Project Number 4 - Comp Sci 182 - Data Structures
@@ -118,7 +118,12 @@ public class Project4 extends JFrame implements ActionListener {
             // add code to push color/code ON the stack and change to that color room
             if (newcolor.equals(null) || codeField.getText().length() != 3)
                 return;
-            roomStack.push(new Room(newcolor, Integer.parseInt(codeField.getText())));
+            if(verifyRoom(colorField.getText())) {
+                Log.log("does connect");
+                roomStack.push(new Room(newcolor, Integer.parseInt(codeField.getText())));
+            } else {
+                Log.log("no connection");
+            }
         }
 
         if (e.getSource() == dumpButton) {
@@ -127,6 +132,35 @@ public class Project4 extends JFrame implements ActionListener {
             roomStack.dump();
         }
 
+    }
+
+    public boolean verifyRoom(String name) {
+        /**From the green room, there are doors to the brown, pink and blue rooms.
+         From the pink room, there are doors to the green, brown and blue rooms.
+         From the brown room, there are doors to the pink, green and red rooms.
+         From the blue room there are doors to the green, pink and yellow rooms
+         From the red room, there are doors to the brown and yellow rooms.
+         From the yellow room there are doors to the red, blue and gold rooms.
+         From the gold room, there is a door to the yellow room.**/
+        String[][] rooms = {{"green", "brown", "pink", "blue"}, {"pink", "green", "brown", "blue"}, {"brown", "pink", "green", "pink", "yellow"},
+                {"blue", "green", "pink", "yellow"}, {"red", "brown", "yellow"}, {"yellow", "red", "blue", "gold"}, {"gold", "yellow"}
+        };
+
+        if(roomStack.peek() == null) {
+            return true;
+        }
+
+        for (int i = 0; i < rooms.length; i++) {
+            if (rooms[i][0].equals(roomStack.peek().getRoomColor())) {
+                for (int j = 0; j < rooms[i].length; j++) {
+                    if (rooms[i][j].equals(name)) {
+                        return true;
+                    }
+                }
+                return false;
+            }
+        }
+        return false;
     }
 
     public class Room {
@@ -201,7 +235,12 @@ public class Project4 extends JFrame implements ActionListener {
         }
 
         public Room peek() {
-            return rooms[length];
+            if(length == 0){
+                return null;
+            } else {
+                Log.log("too bad we are going here");
+                return rooms[length - 1];
+            }
         }
 
         public boolean empty() {
