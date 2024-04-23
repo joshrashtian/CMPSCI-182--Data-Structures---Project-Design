@@ -18,13 +18,15 @@ import java.util.Stack;
 import javax.swing.*;
 import javax.swing.event.*;
 
+import Universal.Log;
+
 public class Project4 extends JFrame implements ActionListener {
 
     private static int xpos = 0, ypos = 0;// place window at this position
     private static int xsize = 700, ysize = 500;// set window to this size
 
     // Private state variables.
-
+    private RoomStackArray roomStack = new RoomStackArray();
     private JPanel northPanel, centerPanel;
     private JButton pushButton, popButton, dumpButton, exitButton;
     private JTextField colorField;
@@ -56,6 +58,7 @@ public class Project4 extends JFrame implements ActionListener {
     }
 
     public void addScreenComponents() {
+
         northPanel = new JPanel();
         northPanel.add(new JLabel("Enter A Color: "));
         colorField = new JTextField("", 15);
@@ -96,7 +99,15 @@ public class Project4 extends JFrame implements ActionListener {
 
         if (e.getSource() == popButton) {
             String newcolor = colorField.getText();
-            outputArea.setText("Pop returning to " + newcolor);
+            int newcode = Integer.parseInt(codeField.getText());
+            if(!newcolor.equals(roomStack.getRoomAtTop().getRoomColor()) || newcode != roomStack.getRoomAtTop().getRoomCode() ){
+                Log.log("Invalid Code or Color!" + roomStack.getRoomAtTop().getRoomColor());
+                return;
+            }
+            Log.log("popping off");
+            Room i = roomStack.pop();
+            outputArea.setText("Pop returning to " + i.getRoomColor());
+            return;
             // add code to pop color off the stack, check that the color/code matches and
             // change to that color room
         }
@@ -105,11 +116,15 @@ public class Project4 extends JFrame implements ActionListener {
             String newcolor = colorField.getText();
             outputArea.setText("Push entering " + newcolor);
             // add code to push color/code ON the stack and change to that color room
+            if (newcolor.equals(null) || codeField.getText().length() != 3)
+                return;
+            roomStack.push(new Room(newcolor, Integer.parseInt(codeField.getText())));
         }
 
         if (e.getSource() == dumpButton) {
             System.out.println("Stack Contents Dump: ");
             // add code to print contents of Stack to the CONSOLE
+            roomStack.dump();
         }
 
     }
@@ -144,11 +159,11 @@ public class Project4 extends JFrame implements ActionListener {
         }
 
         public String toString() {
-            return "Room: " + roomColor + " Code: " + roomCode;
+            return "ROOM: " + roomColor + " | CODE: " + roomCode;
         }
     }
 
-    public interface RoomStackInterface {
+    interface RoomStackInterface {
         void push(Room obj);
 
         Room pop();
@@ -158,17 +173,49 @@ public class Project4 extends JFrame implements ActionListener {
         boolean empty();
     }
 
-    public class RoomStack extends Stack<RoomStackInterface> {
-        protected Stack<RoomStackInterface> curr = new Stack<RoomStackInterface>();
+    public class RoomStackArray implements RoomStackInterface {
+        private int length = 0;
+        private Room[] rooms = new Room[10];
 
-        public RoomStack() {
+        public RoomStackArray() {
 
         }
 
-        public RoomStack(Room[] Rooms) {
+        public RoomStackArray(Room[] Rooms) {
             for (int i = 0; i < Rooms.length; i++) {
-                curr.push(Rooms[i]);
+                this.push(Rooms[i]);
             }
+        }
+
+        public void push(Room obj) {
+            Log.log(obj.toString());
+            rooms[length] = obj;
+            length++;
+        }
+
+        public Room pop() {
+            Room temp = rooms[length-1];
+            rooms[length] = null;
+            length--;
+            return temp;
+        }
+
+        public Room peek() {
+            return rooms[length];
+        }
+
+        public boolean empty() {
+            return length == 0;
+        }
+
+        public void dump() {
+            for (int i = 0; i < length; i++) {
+                Log.log(rooms[i].toString());
+            }
+        }
+
+        public Room getRoomAtTop() {
+            return rooms[length - 1];
         }
     }
 
