@@ -24,6 +24,7 @@ public class Project4 extends JFrame implements ActionListener {
 
     private static int xpos = 0, ypos = 0;// place window at this position
     private static int xsize = 700, ysize = 500;// set window to this size
+    private boolean keyboard = false;
 
     // Private state variables.
     private RoomStackArray roomStack = new RoomStackArray();
@@ -102,11 +103,19 @@ public class Project4 extends JFrame implements ActionListener {
             int newcode = Integer.parseInt(codeField.getText());
             if(!newcolor.equals(roomStack.getRoomAtTop().getRoomColor()) || newcode != roomStack.getRoomAtTop().getRoomCode() ){
                 Log.log("Invalid Code or Color!" + roomStack.getRoomAtTop().getRoomColor());
+                outputArea.setText("Oops! You lost!");
+                roomStack.empty();
+                keyboard = false;
                 return;
             }
             Log.log("popping off");
             Room i = roomStack.pop();
-            outputArea.setText("Pop returning to " + i.getRoomColor());
+
+            if(roomStack.getLength() == 0 && keyboard) {
+                outputArea.setText("Congrats! You have beaten the game!");
+            } else {
+                outputArea.setText("Pop returning to " + i.getRoomColor());
+            }
             return;
             // add code to pop color off the stack, check that the color/code matches and
             // change to that color room
@@ -123,6 +132,10 @@ public class Project4 extends JFrame implements ActionListener {
                 roomStack.push(new Room(newcolor, Integer.parseInt(codeField.getText())));
             } else {
                 Log.log("no connection");
+                outputArea.setText("Died. No Connection");
+                roomStack.empty();
+                keyboard = false;
+
             }
         }
 
@@ -154,6 +167,11 @@ public class Project4 extends JFrame implements ActionListener {
             if (rooms[i][0].equals(roomStack.peek().getRoomColor())) {
                 for (int j = 0; j < rooms[i].length; j++) {
                     if (rooms[i][j].equals(name)) {
+                        if(name.equals("gold")){
+                            if(roomStack.getLength() < 2) return false;
+                            outputArea.setText("You have recieved the golden keyboard. Currently, you are at room gold.");
+                            keyboard = true;
+                        }
                         return true;
                     }
                 }
@@ -161,6 +179,10 @@ public class Project4 extends JFrame implements ActionListener {
             }
         }
         return false;
+    }
+
+    public void changeCourse() {
+
     }
 
     public class Room {
@@ -238,16 +260,18 @@ public class Project4 extends JFrame implements ActionListener {
             if(length == 0){
                 return null;
             } else {
-                Log.log("too bad we are going here");
                 return rooms[length - 1];
             }
         }
 
         public void empty() {
             Log.log("Emptied!");
-            for(Room room : rooms) {
-                room = null;
+
+            for(int i = 0; i < length; i++) {
+                rooms[i] = null;
+
             }
+            length = 0;
         }
 
         public void dump() {
@@ -258,6 +282,10 @@ public class Project4 extends JFrame implements ActionListener {
 
         public Room getRoomAtTop() {
             return rooms[length - 1];
+        }
+
+        public int getLength() {
+            return length;
         }
     }
 
