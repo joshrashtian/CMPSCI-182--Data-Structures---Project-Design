@@ -170,7 +170,7 @@ public class Project4 extends JFrame implements ActionListener {
 
         Room peek();
 
-        boolean empty();
+        void empty();
     }
 
     public class RoomStackArray implements RoomStackInterface {
@@ -204,8 +204,11 @@ public class Project4 extends JFrame implements ActionListener {
             return rooms[length];
         }
 
-        public boolean empty() {
-            return length == 0;
+        public void empty() {
+            Log.log("Emptied!");
+            for(Room room : rooms) {
+                room = null;
+            }
         }
 
         public void dump() {
