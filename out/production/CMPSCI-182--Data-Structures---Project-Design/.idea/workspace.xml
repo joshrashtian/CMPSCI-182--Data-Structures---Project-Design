@@ -4,8 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c0942059-a132-4110-9f28-0bd08a745ead" name="Changes" comment="Void For Empty()">
+    <list default="true" id="c0942059-a132-4110-9f28-0bd08a745ead" name="Changes" comment="Initial Finish for Project4">
       <change beforePath="$PROJECT_DIR$/Project4/Project4.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project4/Project4.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CMPSCI-182--Data-Structures---Project-Design/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CMPSCI-182--Data-Structures---Project-Design/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CMPSCI-182--Data-Structures---Project-Design/Project4/Project4$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CMPSCI-182--Data-Structures---Project-Design/Project4/Project4$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CMPSCI-182--Data-Structures---Project-Design/Project4/Project4$Room.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CMPSCI-182--Data-Structures---Project-Design/Project4/Project4$Room.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CMPSCI-182--Data-Structures---Project-Design/Project4/Project4$RoomStackArray.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CMPSCI-182--Data-Structures---Project-Design/Project4/Project4$RoomStackArray.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CMPSCI-182--Data-Structures---Project-Design/Project4/Project4$RoomStackInterface.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CMPSCI-182--Data-Structures---Project-Design/Project4/Project4$RoomStackInterface.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CMPSCI-182--Data-Structures---Project-Design/Project4/Project4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CMPSCI-182--Data-Structures---Project-Design/Project4/Project4.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,13 +71,39 @@
       <option name="project" value="LOCAL" />
       <updated>1713935165022</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Initial Finish for Project4">
+      <option name="closed" value="true" />
+      <created>1713936317339</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1713936317339</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="CUSTOM_BOOLEAN_PROPERTIES">
+                <map>
+                  <entry key="Show.Git.Branches" value="true" />
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Stack Working!" />
     <MESSAGE value="Void For Empty()" />
-    <option name="LAST_COMMIT_MESSAGE" value="Void For Empty()" />
+    <MESSAGE value="Initial Finish for Project4" />
+    <option name="LAST_COMMIT_MESSAGE" value="Initial Finish for Project4" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

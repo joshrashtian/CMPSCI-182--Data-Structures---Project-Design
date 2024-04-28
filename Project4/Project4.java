@@ -27,7 +27,7 @@ public class Project4 extends JFrame implements ActionListener {
     private boolean keyboard = false;
 
     // Private state variables.
-    private RoomStackArray roomStack = new RoomStackArray();
+    private RoomStackInterface roomStack = new RoomStackArray();
     private JPanel northPanel, centerPanel;
     private JButton pushButton, popButton, dumpButton, exitButton;
     private JTextField colorField;
@@ -101,8 +101,8 @@ public class Project4 extends JFrame implements ActionListener {
         if (e.getSource() == popButton) {
             String newcolor = colorField.getText();
             int newcode = Integer.parseInt(codeField.getText());
-            if(!newcolor.equals(roomStack.getRoomAtTop().getRoomColor()) || newcode != roomStack.getRoomAtTop().getRoomCode() ){
-                Log.log("Invalid Code or Color!" + roomStack.getRoomAtTop().getRoomColor());
+            if(!newcolor.equals(roomStack.peek().getRoomColor()) || newcode != roomStack.peek().getRoomCode() ){
+                Log.log("Invalid Code or Color!" + roomStack.peek().getRoomColor());
                 outputArea.setText("Oops! You lost!");
                 roomStack.empty();
                 keyboard = false;
@@ -111,7 +111,7 @@ public class Project4 extends JFrame implements ActionListener {
             Log.log("popping off");
             Room i = roomStack.pop();
 
-            if(roomStack.getLength() == 0 && keyboard) {
+            if(roomStack.size() == 0 && keyboard) {
                 outputArea.setText("Congrats! You have beaten the game!");
             } else {
                 outputArea.setText("Pop returning to " + i.getRoomColor());
@@ -168,7 +168,7 @@ public class Project4 extends JFrame implements ActionListener {
                 for (int j = 0; j < rooms[i].length; j++) {
                     if (rooms[i][j].equals(name)) {
                         if(name.equals("gold")){
-                            if(roomStack.getLength() < 2) return false;
+                            if(roomStack.size() < 2) return false;
                             outputArea.setText("You have recieved the golden keyboard. Currently, you are at room gold.");
                             keyboard = true;
                         }
@@ -226,6 +226,10 @@ public class Project4 extends JFrame implements ActionListener {
 
         Room peek();
 
+        int size();
+
+        void dump();
+
         void empty();
     }
 
@@ -280,11 +284,7 @@ public class Project4 extends JFrame implements ActionListener {
             }
         }
 
-        public Room getRoomAtTop() {
-            return rooms[length - 1];
-        }
-
-        public int getLength() {
+        public int size() {
             return length;
         }
     }
