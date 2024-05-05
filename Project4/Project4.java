@@ -1,5 +1,4 @@
 package Project4;
-
 /***************************************************************
 
 Project Number 4 - Comp Sci 182 - Data Structures
@@ -14,14 +13,12 @@ This code may only be used with the permission of Christopher C. Ferguson
 
 import java.awt.*;
 import java.awt.event.*;
-import java.util.LinkedList;
 import java.util.Stack;
 
 import javax.swing.*;
 import javax.swing.event.*;
 
 import Universal.Log;
-import Universal.UserInput;
 
 public class Project4 extends JFrame implements ActionListener {
 
@@ -30,8 +27,8 @@ public class Project4 extends JFrame implements ActionListener {
     private boolean keyboard = false;
 
     // Private state variables.
-    private static RoomStackInterface roomStack;
-    private JPanel northPanel, centerPanel, buttons;
+    private RoomStackInterface roomStack = new RoomStackArray();
+    private JPanel northPanel, centerPanel;
     private JButton pushButton, popButton, dumpButton, exitButton;
     private JTextField colorField;
     private JTextField codeField;
@@ -40,28 +37,10 @@ public class Project4 extends JFrame implements ActionListener {
     //////////// MAIN////////////////////////
 
     public static void main(String[] args) {
-        selectType();
         Project4 tpo = new Project4();
     }
+
     //////////// CONSTRUCTOR/////////////////////
-
-    public static void selectType() {
-        UserInput input = new UserInput();
-        Log.log("Enter 0 for Array, 1 for Stack and 2 for List");
-        int user = 4;
-        while(user > 3) {
-            user = input.getInt(0, 2);
-            switch(user) {
-                case 0:
-                    roomStack = new RoomStackArray();
-                case 1:
-                    roomStack = new RoomStackStack();
-                case 2:
-                    roomStack = new RoomStackLink();
-            }
-        }
-
-    }
 
     public Project4() {
         addScreenComponents(); // put the stuff on the screen
@@ -112,8 +91,6 @@ public class Project4 extends JFrame implements ActionListener {
     }
     //////////// BUTTON CLICKS ///////////////////////////
 
-
-
     public void actionPerformed(ActionEvent e) {
 
         if (e.getSource() == exitButton) {
@@ -124,7 +101,7 @@ public class Project4 extends JFrame implements ActionListener {
         if (e.getSource() == popButton) {
             String newcolor = colorField.getText();
             int newcode = Integer.parseInt(codeField.getText());
-            if (!newcolor.equals(roomStack.peek().getRoomColor()) || newcode != roomStack.peek().getRoomCode()) {
+            if(!newcolor.equals(roomStack.peek().getRoomColor()) || newcode != roomStack.peek().getRoomCode() ){
                 Log.log("Invalid Code or Color!" + roomStack.peek().getRoomColor());
                 outputArea.setText("Oops! You lost!");
                 roomStack.empty();
@@ -134,7 +111,7 @@ public class Project4 extends JFrame implements ActionListener {
             Log.log("popping off");
             Room i = roomStack.pop();
 
-            if (roomStack.size() == 0 && keyboard) {
+            if(roomStack.size() == 0 && keyboard) {
                 outputArea.setText("Congrats! You have beaten the game!");
             } else {
                 outputArea.setText("Pop returning to " + i.getRoomColor());
@@ -150,7 +127,7 @@ public class Project4 extends JFrame implements ActionListener {
             // add code to push color/code ON the stack and change to that color room
             if (newcolor.equals(null) || codeField.getText().length() != 3)
                 return;
-            if (verifyRoom(colorField.getText())) {
+            if(verifyRoom(colorField.getText(), codeField.getText())) {
                 Log.log("does connect");
                 roomStack.push(new Room(newcolor, Integer.parseInt(codeField.getText())));
             } else {
@@ -170,35 +147,33 @@ public class Project4 extends JFrame implements ActionListener {
 
     }
 
-    public boolean verifyRoom(String name) {
-        /**
-         * From the green room, there are doors to the brown, pink and blue rooms.
-         * From the pink room, there are doors to the green, brown and blue rooms.
-         * From the brown room, there are doors to the pink, green and red rooms.
-         * From the blue room there are doors to the green, pink and yellow rooms
-         * From the red room, there are doors to the brown and yellow rooms.
-         * From the yellow room there are doors to the red, blue and gold rooms.
-         * From the gold room, there is a door to the yellow room.
-         **/
-        String[][] rooms = { { "green", "brown", "pink", "blue" }, { "pink", "green", "brown", "blue" },
-                { "brown", "pink", "green", "pink", "yellow" },
-                { "blue", "green", "pink", "yellow" }, { "red", "brown", "yellow" },
-                { "yellow", "red", "blue", "gold" }, { "gold", "yellow" }
+    public boolean verifyRoom(String name, String code) {
+        /**From the green room, there are doors to the brown, pink and blue rooms.
+         From the pink room, there are doors to the green, brown and blue rooms.
+         From the brown room, there are doors to the pink, green and red rooms.
+         From the blue room there are doors to the green, pink and yellow rooms
+         From the red room, there are doors to the brown and yellow rooms.
+         From the yellow room there are doors to the red, blue and gold rooms.
+         From the gold room, there is a door to the yellow room.**/
+        String[][] rooms = {{"green", "brown", "pink", "blue"}, {"pink", "green", "brown", "blue"}, {"brown", "pink", "green", "pink", "yellow"},
+                {"blue", "green", "pink", "yellow"}, {"red", "brown", "yellow"}, {"yellow", "red", "blue", "gold"}, {"gold", "yellow"}
         };
 
-        if (roomStack.peek() == null) {
+        if(roomStack.peek() == null) {
             return true;
+        }
+
+        if(code.equals(roomStack.peek().getRoomCode())) {
+            return false;
         }
 
         for (int i = 0; i < rooms.length; i++) {
             if (rooms[i][0].equals(roomStack.peek().getRoomColor())) {
                 for (int j = 0; j < rooms[i].length; j++) {
                     if (rooms[i][j].equals(name)) {
-                        if (name.equals("gold")) {
-                            if (roomStack.size() < 2)
-                                return false;
-                            outputArea
-                                    .setText("You have recieved the golden keyboard. Currently, you are at room gold.");
+                        if(name.equals("gold")){
+                            if(roomStack.size() < 2) return false;
+                            outputArea.setText("You have recieved the golden keyboard. Currently, you are at room gold.");
                             keyboard = true;
                         }
                         return true;
@@ -262,7 +237,7 @@ public class Project4 extends JFrame implements ActionListener {
         void empty();
     }
 
-    public static class RoomStackArray implements RoomStackInterface {
+    public class RoomStackArray implements RoomStackInterface {
         private int length = 0;
         private Room[] rooms = new Room[10];
 
@@ -277,19 +252,20 @@ public class Project4 extends JFrame implements ActionListener {
         }
 
         public void push(Room obj) {
+            Log.log(obj.toString());
             rooms[length] = obj;
             length++;
         }
 
         public Room pop() {
-            Room temp = rooms[length - 1];
+            Room temp = rooms[length-1];
             rooms[length] = null;
             length--;
             return temp;
         }
 
         public Room peek() {
-            if (length == 0) {
+            if(length == 0){
                 return null;
             } else {
                 return rooms[length - 1];
@@ -299,7 +275,7 @@ public class Project4 extends JFrame implements ActionListener {
         public void empty() {
             Log.log("Emptied!");
 
-            for (int i = 0; i < length; i++) {
+            for(int i = 0; i < length; i++) {
                 rooms[i] = null;
 
             }
@@ -316,95 +292,5 @@ public class Project4 extends JFrame implements ActionListener {
             return length;
         }
     }
-    public static class RoomStackStack implements RoomStackInterface {
-        private Stack<Room> rooms = new Stack<Room>();
-
-        public RoomStackStack() {
-
-        }
-
-        public RoomStackStack(Room[] Rooms) {
-            for (int i = 0; i < Rooms.length; i++) {
-                this.push(Rooms[i]);
-            }
-        }
-
-        public void push(Room obj) {
-            rooms.push(obj);
-        }
-
-        public Room pop() {
-
-            return rooms.pop();
-
-        }
-
-        public Room peek() {
-            if(rooms.isEmpty()) return null;
-            return rooms.peek();
-        }
-
-        public void empty() {
-            Log.log("Emptied!");
-            rooms.removeAllElements();
-        }
-
-        public void dump() {
-            Log.log(rooms.toString());
-        }
-
-        public int size() {
-            return rooms.size();
-        }
-    }
-    public static class RoomStackLink implements RoomStackInterface {
-        private LinkedList<Room> rooms = new LinkedList<Room>();
-        private int length = 0;
-
-        public RoomStackLink() {
-
-        }
-
-        public RoomStackLink(Room[] Rooms) {
-            for (int i = 0; i < Rooms.length; i++) {
-                this.push(Rooms[i]);
-                length++;
-            }
-        }
-
-        public void push(Room obj) {
-            rooms.add(obj);
-            length++;
-        }
-
-        public Room pop() {
-            Room last = rooms.getLast();
-            rooms.removeLast();
-            length--;
-            return last ;
-
-        }
-
-        public Room peek() {
-            if(rooms.isEmpty()) return null;
-            return rooms.getLast();
-        }
-
-        public void empty() {
-            Log.log("Emptied!");
-            rooms.clear();
-            length = 0;
-        }
-
-        public void dump() {
-            Log.log(rooms.toString());
-        }
-
-        public int size() {
-            return length;
-        }
-    }
-
-
 
 } // End Of Project4
