@@ -4,13 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c0942059-a132-4110-9f28-0bd08a745ead" name="Changes" comment="Initial Finish for Project4">
+    <list default="true" id="b70feff0-bb6e-4e3a-badb-05c0e1641a0d" name="Changes" comment="Connection map">
+      <change beforePath="$PROJECT_DIR$/.idea/material_theme_project_new.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/material_theme_project_new.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Project4/Project4.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project4/Project4.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CMPSCI-182--Data-Structures---Project-Design/.idea/material_theme_project_new.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CMPSCI-182--Data-Structures---Project-Design/.idea/material_theme_project_new.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/CMPSCI-182--Data-Structures---Project-Design/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CMPSCI-182--Data-Structures---Project-Design/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/CMPSCI-182--Data-Structures---Project-Design/Project4/Project4$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CMPSCI-182--Data-Structures---Project-Design/Project4/Project4$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/CMPSCI-182--Data-Structures---Project-Design/Project4/Project4$Room.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CMPSCI-182--Data-Structures---Project-Design/Project4/Project4$Room.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/CMPSCI-182--Data-Structures---Project-Design/Project4/Project4$RoomStackArray.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CMPSCI-182--Data-Structures---Project-Design/Project4/Project4$RoomStackArray.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CMPSCI-182--Data-Structures---Project-Design/Project4/Project4$RoomStackInterface.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CMPSCI-182--Data-Structures---Project-Design/Project4/Project4$RoomStackInterface.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/CMPSCI-182--Data-Structures---Project-Design/Project4/Project4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CMPSCI-182--Data-Structures---Project-Design/Project4/Project4.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -21,98 +22,72 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 5
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;joshrashtian&quot;
+  }
 }</component>
-  <component name="ProjectId" id="2csRv6ijYlufAlI7wsa4PHjES4S" />
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/joshrashtian/CMPSCI-182--Data-Structures---Project-Design.git&quot;,
+    &quot;accountId&quot;: &quot;42ad1bb2-da8f-4da2-b46a-a09d889c63ca&quot;
+  }
+}</component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 6
+}</component>
+  <component name="ProjectId" id="2drqnhmBsN25CZpPFKWssD3MVni" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;Application.Project3.executor&quot;: &quot;Run&quot;,
     &quot;Application.Project4.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Owner/Documents/CMPSCI-182&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;
+    &quot;last_opened_file_path&quot;: &quot;/Users/joshuarashtian/Documents/CMPSCI182&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.fonts.default&quot;
   }
 }</component>
-  <component name="SharedIndexes">
-    <attachedChunks>
-      <set>
-        <option value="jdk-21.0.2-openjdk-21.0.2-4caba194b151-4f524021" />
-      </set>
-    </attachedChunks>
-  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="c0942059-a132-4110-9f28-0bd08a745ead" name="Changes" comment="" />
-      <created>1708898526879</created>
+      <changelist id="b70feff0-bb6e-4e3a-badb-05c0e1641a0d" name="Changes" comment="" />
+      <created>1710776715065</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1708898526879</updated>
+      <updated>1710776715065</updated>
     </task>
-    <task id="LOCAL-00001" summary="Stack Working!">
+    <task id="LOCAL-00001" summary="Connection map">
       <option name="closed" value="true" />
-      <created>1713842329294</created>
+      <created>1713902565609</created>
       <option name="number" value="00001" />
       <option name="presentableId" value="LOCAL-00001" />
       <option name="project" value="LOCAL" />
-      <updated>1713842329294</updated>
+      <updated>1713902565609</updated>
     </task>
-    <task id="LOCAL-00002" summary="Void For Empty()">
+    <task id="LOCAL-00002" summary="Connection map">
       <option name="closed" value="true" />
-      <created>1713935165022</created>
+      <created>1713935123219</created>
       <option name="number" value="00002" />
       <option name="presentableId" value="LOCAL-00002" />
       <option name="project" value="LOCAL" />
-      <updated>1713935165022</updated>
+      <updated>1713935123219</updated>
     </task>
-    <task id="LOCAL-00003" summary="Initial Finish for Project4">
-      <option name="closed" value="true" />
-      <created>1713936317339</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1713936317339</updated>
-    </task>
-    <option name="localTasksCounter" value="4" />
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State>
-              <option name="CUSTOM_BOOLEAN_PROPERTIES">
-                <map>
-                  <entry key="Show.Git.Branches" value="true" />
-                </map>
-              </option>
-            </State>
-          </value>
-        </entry>
-      </map>
-    </option>
-  </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Stack Working!" />
-    <MESSAGE value="Void For Empty()" />
-    <MESSAGE value="Initial Finish for Project4" />
-    <option name="LAST_COMMIT_MESSAGE" value="Initial Finish for Project4" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <breakpoint enabled="true" type="java-exception">
-          <properties class="java.lang.NullPointerException" package="java.lang" />
-          <option name="timeStamp" value="1" />
-        </breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="Connection map" />
+    <option name="LAST_COMMIT_MESSAGE" value="Connection map" />
   </component>
 </project>
