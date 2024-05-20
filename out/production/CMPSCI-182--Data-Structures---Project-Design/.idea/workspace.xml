@@ -5,19 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b70feff0-bb6e-4e3a-badb-05c0e1641a0d" name="Changes" comment="Connection map">
-      <change beforePath="$PROJECT_DIR$/.idea/material_theme_project_new.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/material_theme_project_new.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project4/Project4.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project4/Project4.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CMPSCI-182--Data-Structures---Project-Design/.idea/material_theme_project_new.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CMPSCI-182--Data-Structures---Project-Design/.idea/material_theme_project_new.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CMPSCI-182--Data-Structures---Project-Design/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CMPSCI-182--Data-Structures---Project-Design/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CMPSCI-182--Data-Structures---Project-Design/Project4/Project4$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CMPSCI-182--Data-Structures---Project-Design/Project4/Project4$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CMPSCI-182--Data-Structures---Project-Design/Project4/Project4$Room.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CMPSCI-182--Data-Structures---Project-Design/Project4/Project4$Room.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CMPSCI-182--Data-Structures---Project-Design/Project4/Project4$RoomStackArray.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CMPSCI-182--Data-Structures---Project-Design/Project4/Project4$RoomStackArray.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CMPSCI-182--Data-Structures---Project-Design/Project4/Project4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CMPSCI-182--Data-Structures---Project-Design/Project4/Project4.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Project5/Project5.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -45,19 +45,29 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.Project3.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Project4.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/joshuarashtian/Documents/CMPSCI182&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.fonts.default&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Project3.executor": "Run",
+    "Application.Project4.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/joshuarashtian/Documents/CMPSCI182",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.15989.150" />
+        <option value="bundled-js-predefined-1d06a55b98c1-91d5c284f522-JavaScript-IU-241.15989.150" />
+      </set>
+    </attachedChunks>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -66,6 +76,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1710776715065</updated>
+      <workItem from="1715034465690" duration="284000" />
     </task>
     <task id="LOCAL-00001" summary="Connection map">
       <option name="closed" value="true" />
@@ -85,6 +96,9 @@
     </task>
     <option name="localTasksCounter" value="3" />
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Connection map" />
