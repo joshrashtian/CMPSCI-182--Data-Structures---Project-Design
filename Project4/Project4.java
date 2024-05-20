@@ -49,9 +49,9 @@ public class Project4 extends JFrame implements ActionListener {
         UserInput input = new UserInput();
         Log.log("Enter 0 for Array, 1 for Stack and 2 for List");
         int user = 4;
-        while(user > 3) {
+        while (user > 3) {
             user = input.getInt(0, 2);
-            switch(user) {
+            switch (user) {
                 case 0:
                     roomStack = new RoomStackArray();
                 case 1:
@@ -112,8 +112,6 @@ public class Project4 extends JFrame implements ActionListener {
     }
     //////////// BUTTON CLICKS ///////////////////////////
 
-
-
     public void actionPerformed(ActionEvent e) {
 
         if (e.getSource() == exitButton) {
@@ -150,12 +148,12 @@ public class Project4 extends JFrame implements ActionListener {
             // add code to push color/code ON the stack and change to that color room
             if (newcolor.equals(null) || codeField.getText().length() != 3)
                 return;
-            if (verifyRoom(colorField.getText())) {
+            if (verifyRoom(colorField.getText(), Integer.parseInt(codeField.getText()))) {
                 Log.log("does connect");
                 roomStack.push(new Room(newcolor, Integer.parseInt(codeField.getText())));
             } else {
                 Log.log("no connection");
-                outputArea.setText("Died. No Connection");
+
                 roomStack.empty();
                 keyboard = false;
 
@@ -170,7 +168,7 @@ public class Project4 extends JFrame implements ActionListener {
 
     }
 
-    public boolean verifyRoom(String name) {
+    public boolean verifyRoom(String name, int code) {
         /**
          * From the green room, there are doors to the brown, pink and blue rooms.
          * From the pink room, there are doors to the green, brown and blue rooms.
@@ -190,13 +188,20 @@ public class Project4 extends JFrame implements ActionListener {
             return true;
         }
 
+        if (code == roomStack.peek().getRoomCode()) {
+            outputArea.setText("Died, Code Can Not Be The Same");
+            return false;
+        }
+
         for (int i = 0; i < rooms.length; i++) {
             if (rooms[i][0].equals(roomStack.peek().getRoomColor())) {
                 for (int j = 0; j < rooms[i].length; j++) {
                     if (rooms[i][j].equals(name)) {
                         if (name.equals("gold")) {
-                            if (roomStack.size() < 2)
+                            if (roomStack.size() < 2) {
+                                outputArea.setText("Died. No Connection");
                                 return false;
+                            }
                             outputArea
                                     .setText("You have recieved the golden keyboard. Currently, you are at room gold.");
                             keyboard = true;
@@ -204,6 +209,7 @@ public class Project4 extends JFrame implements ActionListener {
                         return true;
                     }
                 }
+                outputArea.setText("Died. No Connection");
                 return false;
             }
         }
@@ -316,6 +322,7 @@ public class Project4 extends JFrame implements ActionListener {
             return length;
         }
     }
+
     public static class RoomStackStack implements RoomStackInterface {
         private Stack<Room> rooms = new Stack<Room>();
 
@@ -340,7 +347,8 @@ public class Project4 extends JFrame implements ActionListener {
         }
 
         public Room peek() {
-            if(rooms.isEmpty()) return null;
+            if (rooms.isEmpty())
+                return null;
             return rooms.peek();
         }
 
@@ -357,6 +365,7 @@ public class Project4 extends JFrame implements ActionListener {
             return rooms.size();
         }
     }
+
     public static class RoomStackLink implements RoomStackInterface {
         private LinkedList<Room> rooms = new LinkedList<Room>();
         private int length = 0;
@@ -381,12 +390,13 @@ public class Project4 extends JFrame implements ActionListener {
             Room last = rooms.getLast();
             rooms.removeLast();
             length--;
-            return last ;
+            return last;
 
         }
 
         public Room peek() {
-            if(rooms.isEmpty()) return null;
+            if (rooms.isEmpty())
+                return null;
             return rooms.getLast();
         }
 
@@ -404,7 +414,5 @@ public class Project4 extends JFrame implements ActionListener {
             return length;
         }
     }
-
-
 
 } // End Of Project4
