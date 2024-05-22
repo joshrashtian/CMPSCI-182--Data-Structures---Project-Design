@@ -7,6 +7,14 @@ public class Project5 {
         int data[] = { 50, 30, 60, 10, 80, 55, 40 };
 
         Tree NewTree = new Tree(data);
+        Log.log("Inorder: ");
+        Node.inorder(NewTree.getRoot());
+        Log.log("Postorder: ");
 
+        Log.log("Max: " + NewTree.getMax());
+        Log.log("Sum: " + NewTree.getSum());
+        Log.log("Num of Nodes: " + NewTree.getNodeCount());
+        Log.log("Average: " + NewTree.getSum()/NewTree.getNodeCount());
+        Log.log("Height: " + NewTree.getHeight());
     }
 }
