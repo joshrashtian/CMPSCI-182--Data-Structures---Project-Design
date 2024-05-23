@@ -29,6 +29,10 @@ public class Tree {
         return root.getNodeCount(root, 0);
     }
 
+    public boolean getNode(int val) {
+        return root.getNode(root, val);
+    }
+
     Tree(int[] values) {
         root = new Node(values[0]);
 

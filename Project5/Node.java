@@ -65,6 +65,15 @@ public class Node {
         return curr;
     }
 
+    boolean getNode(Node root, int val) {
+        if(root == null) return false;
+
+        if(root.data == val) return true;
+
+        if(val < root.data) return getNode(root.left, val);
+        else return getNode(root.right, val);
+    }
+
     public static void inorder(Node root){
         if(root==null) return;
 

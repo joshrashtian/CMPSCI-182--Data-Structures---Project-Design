@@ -4,8 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b70feff0-bb6e-4e3a-badb-05c0e1641a0d" name="Changes" comment="Connection map">
-      <change afterPath="$PROJECT_DIR$/Project5/Project5.java" afterDir="false" />
+    <list default="true" id="b70feff0-bb6e-4e3a-badb-05c0e1641a0d" name="Changes" comment="Finished Binary Tree">
+      <change beforePath="$PROJECT_DIR$/Project5/Node.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project5/Node.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project5/Project5.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project5/Project5.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project5/Tree.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project5/Tree.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CMPSCI-182--Data-Structures---Project-Design/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CMPSCI-182--Data-Structures---Project-Design/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,9 +34,12 @@
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/joshrashtian/CMPSCI-182--Data-Structures---Project-Design.git&quot;,
-    &quot;accountId&quot;: &quot;42ad1bb2-da8f-4da2-b46a-a09d889c63ca&quot;
+    &quot;accountId&quot;: &quot;39750516-f373-4111-9855-b039a722dbdf&quot;
   }
 }</component>
+  <component name="MacroExpansionManager">
+    <option name="directoryName" value="38it5tec" />
+  </component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
@@ -45,21 +51,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.Project3.executor": "Run",
-    "Application.Project4.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/joshuarashtian/Documents/CMPSCI182",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Project3.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Project4.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Project5.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/joshuarashtian/Documents/CMPSCI182&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;org.rust.cargo.project.model.impl.CargoExternalSystemProjectAware.subscribe.first.balloon&quot;: &quot;&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -76,7 +88,14 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1710776715065</updated>
-      <workItem from="1715034465690" duration="284000" />
+      <workItem from="1715034465690" duration="665000" />
+      <workItem from="1715104024862" duration="1988000" />
+      <workItem from="1715214019203" duration="379000" />
+      <workItem from="1715233199422" duration="61000" />
+      <workItem from="1715298555588" duration="241000" />
+      <workItem from="1716245425061" duration="1794000" />
+      <workItem from="1716402190870" duration="3038000" />
+      <workItem from="1716502739173" duration="275000" />
     </task>
     <task id="LOCAL-00001" summary="Connection map">
       <option name="closed" value="true" />
@@ -94,7 +113,23 @@
       <option name="project" value="LOCAL" />
       <updated>1713935123219</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Tree First Ver Finished">
+      <option name="closed" value="true" />
+      <created>1716246193038</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1716246193038</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Finished Binary Tree">
+      <option name="closed" value="true" />
+      <created>1716404510325</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1716404510325</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -102,6 +137,12 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Connection map" />
-    <option name="LAST_COMMIT_MESSAGE" value="Connection map" />
+    <MESSAGE value="Tree First Ver Finished" />
+    <MESSAGE value="Finished Binary Tree" />
+    <option name="LAST_COMMIT_MESSAGE" value="Finished Binary Tree" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

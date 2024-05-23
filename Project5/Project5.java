@@ -14,6 +14,7 @@ public class Project5 {
         Log.log("Max: " + NewTree.getMax());
         Log.log("Sum: " + NewTree.getSum());
         Log.log("Num of Nodes: " + NewTree.getNodeCount());
+        Log.log("Exists 40: " + NewTree.getNode(40));
         Log.log("Average: " + NewTree.getSum()/NewTree.getNodeCount());
         Log.log("Height: " + NewTree.getHeight());
     }
